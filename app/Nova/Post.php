@@ -2,6 +2,8 @@
 
 namespace App\Nova;
 
+use App\Nova\Actions\UpdateTitle;
+use App\Nova\Actions\UpdateTitleStandAlone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Laravel\Nova\Fields\DateTime;
@@ -35,6 +37,7 @@ class Post extends Resource
      */
     public static $search = [
         'id',
+        'type'
     ];
 
     public static function availableTypes(): Collection
@@ -119,6 +122,9 @@ class Post extends Resource
      */
     public function actions(NovaRequest $request)
     {
-        return [];
+        return [
+            UpdateTitle::make(),
+            UpdateTitleStandAlone::make()
+        ];
     }
 }
